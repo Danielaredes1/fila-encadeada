@@ -16,6 +16,7 @@ int testeVazia(fila *fila){
 }
 
 void enfileirar(fila *fila, dados d){
+    FILE *arquivo = fopen("conteudo.txt", "a");
     dados *novo = (dados *)malloc(sizeof(dados));
 
     strcmp(novo->nome, d.nome);
@@ -31,5 +32,10 @@ void enfileirar(fila *fila, dados d){
         fila->fim->prox = novo;
         fila->fim = novo;
     }
+
+    fprintf(arquivo, "%s %d %s %s %s\n", novo->nome, novo->idade, novo->descricao, novo->extra1, novo->extra2);
+}
+
+void desempilhar(){
 
 }
