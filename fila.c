@@ -2,3 +2,34 @@
 Matrícula: 20242005840
 Beatriz Piedade Rodrigues
 Matrícula: 20242005699 */
+
+#include "fila.h"
+
+void criaFila(fila *cria){
+    cria->inicio == NULL;
+    cria->fim == NULL;
+}
+
+int testeVazia(fila *fila){
+    if(fila->inicio == NULL && fila->fim == NULL ) return 1;
+    else return 0; 
+}
+
+void enfileirar(fila *fila, dados d){
+    dados *novo = (dados *)malloc(sizeof(dados));
+
+    strcmp(novo->nome, d.nome);
+    novo->idade = d.idade;
+    strcmp(novo->descricao, d.descricao);
+    strcmp(novo->extra1, d.extra1);
+    strcmp(novo->extra2, d.extra2);
+
+    if(testeVazia(fila)){
+        fila->fim = fila->inicio = novo;
+    }
+    else{
+        fila->fim->prox = novo;
+        fila->fim = novo;
+    }
+
+}
