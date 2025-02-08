@@ -5,9 +5,11 @@ Matrícula: 20242005699 */
 
 #include "fila.h"
 
-void criaFila(fila *cria){
-    cria->inicio == NULL;
-    cria->fim == NULL;
+fila* criaFila(){
+    fila *f = (fila*)malloc(sizeof(fila));
+    f->inicio == NULL;
+    f->fim == NULL;
+    return f;
 }
 
 int testeVazia(fila *fila){
