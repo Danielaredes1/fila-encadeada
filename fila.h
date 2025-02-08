@@ -24,7 +24,7 @@ typedef struct{
     dados *fim;
 } fila;
 
-void criaFila(fila *cria);
+fila* criaFila();
 int testeVazia(fila *fila);
 void enfileirar(fila *fila, dados d);
 void desenfileirar();
