@@ -28,16 +28,16 @@ int main(){
                 printf("digite o nome:\n"); getchar();
                 fgets(novoDado->nome, 100, stdin);
 
-                printf("digite a ideade:\n"); getchar();
+                printf("digite a ideade:\n"); 
                 fgets(novoDado->idade, 10, stdin);
 
-                printf("Informe a descrição:\n"); getchar();
+                printf("Informe a descrição:\n"); 
                 fgets(novoDado->descricao, 100, stdin);
 
-                printf("Dado opcional:\n"); getchar();
+                printf("Dado opcional:\n"); 
                 fgets(novoDado->extra1, 50, stdin);
 
-                printf("Dado opcional:\n"); getchar();
+                printf("Dado opcional:\n");
                 fgets(novoDado->extra2, 50, stdin);
 
                 enfileirar(minhaFila, *novoDado);
@@ -48,7 +48,7 @@ int main(){
                 break;
             case 3:
                 salvarArquivo(minhaFila);
-        
+                break;
             default:
                 printf("Operação inválida");
                 break;
