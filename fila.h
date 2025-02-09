@@ -35,8 +35,9 @@ Matrícula: 20242005699 */
     void enfileirar(fila *fila, dados d);
     void desenfileirar(fila *fila);
     void desalocar(fila *fila);
-    void imprimir();
-    void lerArquivo();
-    void salvarArquivo();
+    void esvaziar(fila *fila);
+    void imprimir(fila *fila);
+    void lerArquivo(fila *fila);
+    void salvarArquivo(fila *fila);
 
 #endif
