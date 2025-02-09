@@ -37,9 +37,15 @@ void enfileirar(fila *fila, dados d){
         fila->fim->prox = novo;
         fila->fim = novo;
     }
+    d.nome[strcspn(d.nome, "\n")] = '\0';
+    d.idade[strcspn(d.idade, "\n")] = '\0';
+    d.descricao[strcspn(d.descricao, "\n")] = '\0';
+    d.extra1[strcspn(d.extra1, "\n")] = '\0';
+    d.extra2[strcspn(d.extra2, "\n")] = '\0';
 
-    fprintf(arquivo, "%s %s %s %s %s\n", d.nome, d.idade, d.descricao, d.extra1, d.extra2);
-    printf("Dado enfileirado com sucesso!");
+
+    fprintf(arquivo, "%s,%s,%s,%s,%s\n", d.nome, d.idade, d.descricao, d.extra1, d.extra2);
+    printf("Dado enfileirado com sucesso!\n");
     fclose(arquivo);
 }
 
@@ -130,7 +136,7 @@ void lerArquivo(fila *fila){
     
     char tempNome[100], tempIdade[10], tempDescricao[1000], tempExtra1[50], tempExtra2[50];
 
-    while(fscanf(arquivo, "%99[^,],%9[^,],%999[^,],%49[^,],%49[^\n]\n", tempNome, tempIdade,
+    while(fscanf(arquivo, "%99[^,],%9[^,],%999[^,],%49[^,],%49[^\n]", tempNome, tempIdade,
     tempDescricao, tempExtra1, tempExtra2) == 5) {
         dados tempDados = {{*tempNome, *tempIdade, *tempDescricao, *tempExtra1, *tempExtra2}};
         enfileirar(fila, tempDados);
