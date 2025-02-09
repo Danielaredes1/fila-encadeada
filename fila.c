@@ -39,6 +39,7 @@ void enfileirar(fila *fila, dados d){
     }
 
     fprintf(arquivo, "%s %s %s %s %s\n", d.nome, d.idade, d.descricao, d.extra1, d.extra2);
+    printf("Dado enfileirado com sucesso!");
     fclose(arquivo);
 }
 
@@ -60,7 +61,11 @@ void desenfileirar(fila *fila){
     if(fila->inicio == NULL){
         fila->fim = NULL;
     }
-    
+
+    printf("Dado desenfileirado:\n");
+    printf("Nome: %s\nIdade: %s\nDescrição: %s\nExtra 1: %s\nExtra 2: %s", temp->dado.nome, temp->dado.idade, 
+    temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);
+
     free(temp);
     
     char linha[400];
@@ -95,6 +100,23 @@ void desalocar(fila *fila){
     free(fila);
 }
 
+void esvaziar(fila *fila){
+    if(testeVazia(fila)) {
+        printf("A fila já está vazia");
+        exit(1);
+    }
+
+    FILE *arquivo = fopen("conteudo.txt", "r+");
+    if(arquivo == NULL) exit(1);
+
+    while(fila->inicio != NULL){
+        desenfileirar(fila);
+    }
+    fila->fim = NULL;
+    arquivo = NULL;
+    fclose(arquivo);
+}
+
 void imprimir(fila *fila){
     for(no *temp = fila->inicio; temp != NULL; temp = temp->prox){
         printf("nome: %s, idade; %s, compromisso: %s, extra1: %s, extra2: %s\n", 
@@ -102,7 +124,7 @@ void imprimir(fila *fila){
     }
 }
 
-void lerDeArquivo(fila *fila){
+void lerArquivo(fila *fila){
     FILE *arquivo = fopen("conteudo.txt", "r");
     if(arquivo == NULL) exit(1);
     
@@ -117,7 +139,7 @@ void lerDeArquivo(fila *fila){
 
 }
 
-void salvarEmArquivo(fila *fila){
+void salvarArquivo(fila *fila){
     FILE *arquivo = fopen("conteudo.txt", "w");
     if(arquivo == NULL) exit(1);
     
