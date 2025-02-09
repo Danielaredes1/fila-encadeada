@@ -94,3 +94,36 @@ void desalocar(fila *fila){
     fila->fim = NULL;
     free(fila);
 }
+
+void imprimir(fila *fila){
+    for(no *temp = fila->inicio; temp != NULL; temp = temp->prox){
+        printf("nome: %s, idade; %s, compromisso: %s, extra1: %s, extra2: %s\n", 
+        temp->dado.nome, temp->dado.idade, temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);
+    }
+}
+
+void lerDeArquivo(fila *fila){
+    FILE *arquivo = fopen("conteudo.txt", "r");
+    if(arquivo == NULL) exit(1);
+    
+    char tempNome[100], tempIdade[10], tempDescricao[1000], tempExtra1[50], tempExtra2[50];
+
+    while(fscanf(arquivo, "%99[^,],%9[^,],%999[^,],%49[^,],%49[^\n]\n", tempNome, tempIdade,
+    tempDescricao, tempExtra1, tempExtra2) == 5) {
+        dados tempDados = {{*tempNome, *tempIdade, *tempDescricao, *tempExtra1, *tempExtra2}};
+        enfileirar(fila, tempDados);
+    }
+    fclose(arquivo);
+
+}
+
+void salvarEmArquivo(fila *fila){
+    FILE *arquivo = fopen("conteudo.txt", "w");
+    if(arquivo == NULL) exit(1);
+    
+    for(no *temp = fila->inicio; temp != NULL; temp = temp->prox) {
+        fprintf(arquivo, "%s,%s,%s,%s,%s\n", temp->dado.nome, temp->dado.idade,
+        temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);  
+    }
+    fclose(arquivo);
+}
