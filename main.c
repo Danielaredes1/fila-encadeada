@@ -13,7 +13,7 @@ Matrícula: 20242005699 */
 int main(){
     while(1){
         int n;
-        printf("Operações:\n(1) para empilhar;\n(2) para desempilhar;\n(3) para salvar\n(4) para fechar.");
+        printf("Operações:\n(1) para empilhar;\n(2) para desempilhar;\n(3) para salvar\n(4) para fechar.\n");
         scanf("%d", &n);
 
         switch (n) {
