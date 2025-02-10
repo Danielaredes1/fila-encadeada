@@ -133,9 +133,9 @@ void lerArquivo(fila *fila){
     FILE *arquivo = fopen("conteudo.txt", "r");
     if(arquivo == NULL) exit(1);
     
-    char tempNome[100], tempIdade[10], tempDescricao[1000], tempExtra1[50], tempExtra2[50];
+    char tempNome[100], tempIdade[10], tempDescricao[100], tempExtra1[50], tempExtra2[50];
 
-    while(fscanf(arquivo, "%99[^,],%9[^,],%999[^,],%49[^,],%49[^\n]", tempNome, tempIdade,
+    while(fscanf(arquivo, "%99[^,],%9[^,],%99[^,],%49[^,],%49[^\n]", tempNome, tempIdade,
     tempDescricao, tempExtra1, tempExtra2) == 5) {
         dados tempDados = {{*tempNome, *tempIdade, *tempDescricao, *tempExtra1, *tempExtra2}};
         enfileirar(fila, tempDados);
