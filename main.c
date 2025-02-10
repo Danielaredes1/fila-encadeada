@@ -7,7 +7,6 @@ Matrícula: 20242005699 */
 
 int main(){
     fila *minhaFila = criaFila();
-    dados *novoDado;
 
     while(1){
         int n;
@@ -21,24 +20,7 @@ int main(){
 
         switch (n) {
             case 1:
-                novoDado = (dados *)malloc(sizeof(dados));
-
-                printf("digite o nome:\n"); getchar();
-                fgets(novoDado->nome, 100, stdin);
-
-                printf("digite a ideade:\n"); 
-                fgets(novoDado->idade, 10, stdin);
-
-                printf("Informe a descrição:\n"); 
-                fgets(novoDado->descricao, 100, stdin);
-
-                printf("Dado opcional:\n"); 
-                fgets(novoDado->extra1, 50, stdin);
-
-                printf("Dado opcional:\n");
-                fgets(novoDado->extra2, 50, stdin);
-
-                enfileirar(minhaFila, *novoDado);
+                lerArquivo(minhaFila);
                 break;
 
             case 2:
@@ -55,5 +37,3 @@ int main(){
 
     return 0;
 }
-
-
