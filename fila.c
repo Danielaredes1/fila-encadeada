@@ -68,7 +68,7 @@ void desenfileirar(fila *fila){
     }
 
     printf("Dado desenfileirado:\n");
-    printf("Nome: %s\nIdade: %s\nDescrição: %s\nExtra 1: %s\nExtra 2: %s", temp->dado.nome, temp->dado.idade, 
+    printf("Nome: %s\nIdade: %s\nDescrição: %s\nExtra 1: %s\nExtra 2: %s\n", temp->dado.nome, temp->dado.idade, 
     temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);
 
     free(temp);
@@ -149,13 +149,14 @@ void salvarArquivo(fila *fila){
     if(arquivo == NULL) exit(1);
 
     no *temp = fila->inicio;
-    temp->dado.nome[strcspn(temp->dado.nome, "\n")] = '\0';
-    temp->dado.idade[strcspn(temp->dado.idade, "\n")] = '\0';
-    temp->dado.descricao[strcspn(temp->dado.descricao, "\n")] = '\0';
-    temp->dado.extra1[strcspn(temp->dado.extra1, "\n")] = '\0';
-    temp->dado.extra2[strcspn(temp->dado.extra2, "\n")] = '\0';
-     
+
     while (temp != NULL) {
+        temp->dado.nome[strcspn(temp->dado.nome, "\n")] = '\0';
+        temp->dado.idade[strcspn(temp->dado.idade, "\n")] = '\0';
+        temp->dado.descricao[strcspn(temp->dado.descricao, "\n")] = '\0';
+        temp->dado.extra1[strcspn(temp->dado.extra1, "\n")] = '\0';
+        temp->dado.extra2[strcspn(temp->dado.extra2, "\n")] = '\0';
+     
         fprintf(arquivo, "%s,%s,%s,%s,%s\n", temp->dado.nome, temp->dado.idade, temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);
         temp = temp->prox;
     }
