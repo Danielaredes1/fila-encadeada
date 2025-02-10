@@ -18,12 +18,8 @@ int testeVazia(fila *fila){
 }
 
 void enfileirar(fila *fila, dados d){
-    FILE *arquivo = fopen("conteudo.txt", "a");
-    if(arquivo == NULL) exit(1);
-
     no *novo = (no *)malloc(sizeof(no));
     if(novo == NULL){
-        fclose(arquivo);
         exit(1);
     }
 
@@ -37,6 +33,9 @@ void enfileirar(fila *fila, dados d){
         fila->fim->prox = novo;
         fila->fim = novo;
     }
+    FILE *arquivo = fopen("conteudo.txt", "a");
+    if(arquivo == NULL) exit(1);
+
     d.nome[strcspn(d.nome, "\n")] = '\0';
     d.idade[strcspn(d.idade, "\n")] = '\0';
     d.descricao[strcspn(d.descricao, "\n")] = '\0';
@@ -50,16 +49,16 @@ void enfileirar(fila *fila, dados d){
 }
 
 void desenfileirar(fila *fila){
+    if(testeVazia(fila)) {
+        printf("A fila já está vazia");
+        exit(1);
+    }
     FILE *arquivo = fopen("conteudo.txt", "r");
     if(arquivo == NULL) exit(1);
 
     FILE *arqtemp = fopen("temp.txt", "w");
     if(arqtemp == NULL) exit(1);
 
-    if(testeVazia(fila)) {
-        printf("A fila já está vazia");
-        exit(1);
-    }
 
     no *temp = fila->inicio;
     fila->inicio = fila->inicio->prox;
@@ -148,10 +147,17 @@ void lerArquivo(fila *fila){
 void salvarArquivo(fila *fila){
     FILE *arquivo = fopen("conteudo.txt", "w");
     if(arquivo == NULL) exit(1);
-    
-    for(no *temp = fila->inicio; temp != NULL; temp = temp->prox) {
-        fprintf(arquivo, "%s,%s,%s,%s,%s\n", temp->dado.nome, temp->dado.idade,
-        temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);  
+
+    no *temp = fila->inicio;
+    temp->dado.nome[strcspn(temp->dado.nome, "\n")] = '\0';
+    temp->dado.idade[strcspn(temp->dado.idade, "\n")] = '\0';
+    temp->dado.descricao[strcspn(temp->dado.descricao, "\n")] = '\0';
+    temp->dado.extra1[strcspn(temp->dado.extra1, "\n")] = '\0';
+    temp->dado.extra2[strcspn(temp->dado.extra2, "\n")] = '\0';
+     
+    while (temp != NULL) {
+        fprintf(arquivo, "%s,%s,%s,%s,%s\n", temp->dado.nome, temp->dado.idade, temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);
+        temp = temp->prox;
     }
     fclose(arquivo);
 }
