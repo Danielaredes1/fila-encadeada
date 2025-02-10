@@ -165,7 +165,7 @@ void salvarArquivo(fila *fila){
         temp->dado.extra1[strcspn(temp->dado.extra1, "\n")] = '\0';
         temp->dado.extra2[strcspn(temp->dado.extra2, "\n")] = '\0';
      
-        fprintf(arquivo, "%s,%s,%s,%s,%s\n", temp->dado.nome, temp->dado.idade, temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);
+        fprintf(arquivo, "%s, %s, %s, %s, %s\n", temp->dado.nome, temp->dado.idade, temp->dado.descricao, temp->dado.extra1, temp->dado.extra2);
         temp = temp->prox;
     }
     fclose(arquivo);
