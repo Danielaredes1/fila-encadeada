@@ -51,7 +51,7 @@ void enfileirar(fila *fila, dados d){
 void desenfileirar(fila *fila){
     if(testeVazia(fila)) {
         printf("A fila já está vazia");
-        exit(1);
+        return;
     }
     FILE *arquivo = fopen("conteudo.txt", "r");
     if(arquivo == NULL) exit(1);
@@ -108,7 +108,7 @@ void desalocar(fila *fila){
 void esvaziar(fila *fila){
     if(testeVazia(fila)) {
         printf("A fila já está vazia");
-        exit(1);
+        return;
     }
 
     FILE *arquivo = fopen("conteudo.txt", "r+");
@@ -130,17 +130,25 @@ void imprimir(fila *fila){
 }
 
 void lerArquivo(fila *fila){
-    FILE *arquivo = fopen("conteudo.txt", "r");
-    if(arquivo == NULL) exit(1);
-    
-    char tempNome[100], tempIdade[10], tempDescricao[100], tempExtra1[50], tempExtra2[50];
+    dados *novoDado;
+    novoDado = (dados *)malloc(sizeof(dados));
 
-    while(fscanf(arquivo, "%99[^,],%9[^,],%99[^,],%49[^,],%49[^\n]", tempNome, tempIdade,
-    tempDescricao, tempExtra1, tempExtra2) == 5) {
-        dados tempDados = {{*tempNome, *tempIdade, *tempDescricao, *tempExtra1, *tempExtra2}};
-        enfileirar(fila, tempDados);
-    }
-    fclose(arquivo);
+    printf("digite o nome:\n"); getchar();
+    fgets(novoDado->nome, 100, stdin);
+
+    printf("digite a ideade:\n"); 
+    fgets(novoDado->idade, 10, stdin);
+
+    printf("Informe a descrição:\n"); 
+    fgets(novoDado->descricao, 100, stdin);
+
+    printf("Dado opcional:\n"); 
+    fgets(novoDado->extra1, 50, stdin);
+
+    printf("Dado opcional:\n");
+    fgets(novoDado->extra2, 50, stdin);
+
+    enfileirar(fila, *novoDado);
 
 }
 
