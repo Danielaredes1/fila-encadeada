@@ -43,7 +43,7 @@ void enfileirar(fila *fila, dados d){
     d.extra2[strcspn(d.extra2, "\n")] = '\0';
 
 
-    fprintf(arquivo, "%s,%s,%s,%s,%s\n", d.nome, d.idade, d.descricao, d.extra1, d.extra2);
+    fprintf(arquivo, "%s, %s, %s, %s, %s\n", d.nome, d.idade, d.descricao, d.extra1, d.extra2);
     printf("Dado enfileirado com sucesso!\n");
     fclose(arquivo);
 }
